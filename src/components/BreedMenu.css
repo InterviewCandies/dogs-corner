@@ -1,0 +1,21 @@
+.breeds {
+    position: relative;
+}
+
+.list {
+    max-height: 350px;
+    overflow: auto;
+    width: 280px;
+    display: inline-block;
+    vertical-align: top;
+    position: absolute;
+    right: 0;
+    top: 50px;
+}
+
+.no-result {
+    width: 100%;
+    text-align: center;
+    font-weight: 500;
+    color: #8f95b2;
+}
