@@ -1,20 +1,18 @@
 .info-box {
     display: inline-block;
-    margin-left: 16px;
     max-width: 400px;
     min-width: 350px;
     min-height: 350px;
+}
+
+.info-box > span {
+    float: right;
 }
 
 .info-box > img {
     width: 100%;
     height: 300px;
     margin: 16px 0;
-}
-
-.info-box > img:hover {
-    cursor: pointer;
-    opacity: 0.7;
 }
 
 .info-box > h3 {

@@ -4,6 +4,7 @@ import BreedMenu from "../components/BreedMenu";
 import { BreedType } from "../types/Breed";
 import DogService from "../services/DogService";
 import BreedInfo from "../components/BreedInfo";
+import {BREEDS} from "../mocks/breeds";
 
 function Breed() {
     const [breeds, setBreeds] = useState<BreedType[]>([]);
@@ -17,6 +18,8 @@ function Breed() {
             setSelectedBreed(breeds.data[0]);
         }
         fetchBreeds();
+      // setBreeds(BREEDS);
+      // setSelectedBreed(BREEDS[0]);
     }, [])
 
     const onBreedSelected = (id: number) => {

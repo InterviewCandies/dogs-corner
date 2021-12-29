@@ -22,7 +22,3 @@ export interface BreedType {
         "url": string
     }
 }
-
-export type BreedsResponse = {
-    data: BreedType[]
-}
