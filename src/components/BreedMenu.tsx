@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
-import { Card, Menu, Pane, SearchInput } from "evergreen-ui";
+import {Card, Menu, Pane, SearchInput, Spinner} from "evergreen-ui";
 import './BreedMenu.css';
 import { BreedType } from "../types/Breed";
 
@@ -16,7 +16,7 @@ interface Props {
     handleBreedSearch: (value: string) => void;
 }
 
-function BreedMenu({ breeds, handleBreedChange, handleBreedSearch }: Props) {
+function BreedMenu({ breeds, handleBreedChange, handleBreedSearch}: Props) {
     const [selectedBreed, setSelectBreed] = useState<number | null>(null);
 
     useEffect(() => {
@@ -33,10 +33,13 @@ function BreedMenu({ breeds, handleBreedChange, handleBreedSearch }: Props) {
                     <Menu.OptionsGroup
                         selected={selectedBreed}
                         options={getBreedOptions(breeds)}
-                        onChange={(id) => { setSelectBreed(id);  handleBreedChange(id); }}>
+                        onChange={(id) => {
+                            setSelectBreed(id);
+                            handleBreedChange(id);
+                        }}>
                     </Menu.OptionsGroup>
                 </Menu> : <Pane className="no-result" padding={16}>No result</Pane>
-            }
+        }
         </Card>
     </div>
 

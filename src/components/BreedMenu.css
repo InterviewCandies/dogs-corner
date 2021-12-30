@@ -1,5 +1,6 @@
 .breeds {
     position: relative;
+    margin-right: 16px;
 }
 
 .list {
@@ -11,7 +12,6 @@
     position: absolute;
     right: 0;
     top: 50px;
-    margin-right: 16px;
 }
 
 .no-result {

@@ -46,6 +46,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-loading-overlay": "^1.0.1",
     "@types/uniqid": "^5.3.2"
   }
 }

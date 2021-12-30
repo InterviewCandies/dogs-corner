@@ -26,18 +26,24 @@ const getTags = (temperament: string) => {
 function BreedInfo({ breed }: Props) {
     const [votes, setVotes] = useState<VoteType[]>([]);
     const [favourites, setFavourites] = useState<Favourite[]>([]);
+    const [isVoting, setIsVoting] = useState<boolean>(false);
+    const [isProcessingFav, setIsProcessingFav] = useState<boolean>(false);
 
     useEffect(() => {
         const userId = DogService.getUserInfo();
         const fetchVotes = async() => {
+            setIsVoting(true)
             const votes = await DogService.getVotesByUserId(userId).then(response => response.data);
             setVotes(votes);
+            setIsVoting(false);
         }
         fetchVotes();
 
         const fetchFavourites = async() => {
+            setIsProcessingFav(true);
             const favourites = await DogService.getFavouritesByUserId(userId).then(response => response.data);
             setFavourites(favourites);
+            setIsProcessingFav(false);
         }
 
         fetchFavourites();
@@ -48,13 +54,17 @@ function BreedInfo({ breed }: Props) {
     const currentFav = favourites.find(fav => fav.image_id === breed?.image.id);
 
     const onVote = async(value: number) => {
+        setIsVoting(true);
         await deleteVote();
         if (currentVote?.value !== value) {
             await createNewVote(value);
         }
+        setIsVoting(false);
     }
 
     const onFavouriteClicked = async () => {
+        setIsProcessingFav(true);
+
         if (currentFav) {
             await DogService.deleteFavourite(currentFav.id);
             setFavourites(prevState => prevState.filter(item => item.id !== currentFav.id));
@@ -76,6 +86,8 @@ function BreedInfo({ breed }: Props) {
                 duration: 5
             });
         }
+
+        setIsProcessingFav(false);
     }
 
     const createNewVote = async (value: number) => {
@@ -109,19 +121,23 @@ function BreedInfo({ breed }: Props) {
     return  <Card className="info-box" elevation={1} padding={16}>
         {breed ? <>
             <span>
-                <IconButton icon={ThumbsUpIcon}
+                <IconButton icon={isVoting ? undefined : ThumbsUpIcon}
                     marginRight={8}
+                    isLoading={isVoting}
                     appearance={currentVote?.value === 1 ? 'primary' : undefined}
                     onClick={() => onVote(1)}
                     intent={currentVote?.value === 1 ? 'success' : undefined}
                 />
-                <IconButton icon={ThumbsDownIcon}
+                <IconButton icon={isVoting ? undefined : ThumbsDownIcon}
                     appearance={currentVote?.value === 0 ? 'primary' : undefined}
                     marginRight={8}
+                    isLoading={isVoting}
                     onClick={() => onVote(0)}
                     intent={currentVote?.value === 0 ? 'danger' : undefined}
                 />
-                 <IconButton icon={HeartIcon}
+                 <IconButton
+                    icon={isProcessingFav ? undefined : HeartIcon}
+                    isLoading={isProcessingFav}
                     appearance={currentFav? 'primary' : undefined}
                     onClick={() => onFavouriteClicked()}
                     intent={currentFav? 'none' : undefined}

@@ -1,0 +1,54 @@
+.favourites-collection {
+    padding: 16px 24px 16px 24px;
+    margin-bottom: 24px;
+    min-height: 230px;
+}
+
+.title {
+    margin: 8px 0 24px 0;
+    color: #8f95b2;
+}
+
+.thumb {
+    position: relative;
+    width: max-content;
+}
+
+.image {
+    width: 100px;
+    height: 80px;
+    border-radius: 8px;
+    opacity: 0.8;
+    box-shadow: rgb(50 50 93 / 25%) 0px 13px 27px -5px, rgb(0 0 0 / 30%) 0px 8px 16px -8px
+}
+
+
+.remove-icon {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+}
+
+
+.images {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.pagination {
+    width: max-content;
+    margin-left: auto;
+}
+
+.no-item {
+    background: #E6E8F0;
+    text-align: center;
+    line-height: 120px;
+    height: 120px;
+}
+
+.no-item > h3 {
+    color: #c1c4d6;
+    font-size: 16px;
+}

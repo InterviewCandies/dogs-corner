@@ -4,6 +4,7 @@ import uniqid from 'uniqid';
 import { VoteType } from "../types/Vote";
 import { NewResultType, ResultType } from "../types/Response";
 import { Favourite } from "../types/Favourite";
+import {UploadedImageType} from "../types/UploadedImage";
 
 
 class DogService {
@@ -32,6 +33,16 @@ class DogService {
                 sub_id: userId
             }
         })
+    }
+    getUploadedImage(userId: string) {
+        return axios.get<UploadedImageType[]>('/images', {
+            params: {
+                sub_id: userId,
+            }
+        })
+    }
+    deleteUploadedImage(imageId: number) {
+        return axios.delete<ResultType>('/images/' + imageId);
     }
     createFavourite(userId: string, imageId: string) {
         return axios.post<NewResultType>('/favourites', {

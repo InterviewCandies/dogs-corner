@@ -1,0 +1,22 @@
+.file-container {
+    border: 1px dashed #bdbdbd;
+    width: 100%;
+    height: 200px;
+    position: relative;
+}
+
+.file-input {
+    opacity: 0;
+    height: 100%;
+}
+
+.placeholder-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-size: 16px;
+    width: 100%;
+    color: #8f95b2;
+}

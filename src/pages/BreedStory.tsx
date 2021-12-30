@@ -3,7 +3,7 @@ import { BreedType } from "../types/Breed";
 import BreedInfo from "../components/BreedInfo";
 import DogService from "../services/DogService";
 import './BreedStory.css';
-import { CaretLeftIcon, CaretRightIcon, IconButton } from "evergreen-ui";
+import {CaretLeftIcon, CaretRightIcon, IconButton, Pane, Spinner} from "evergreen-ui";
 
 interface Props {
     breeds: BreedType[]
@@ -12,12 +12,15 @@ interface Props {
 function BreedStory() {
     const [breeds, setBreeds] = useState<BreedType[]>([]);
     const [selectedBreed, setSelectedBreed] = useState<number | null>(null);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     useEffect(() => {
         const fetchBreeds = async() => {
+            setIsLoading(true)
             const breeds = await DogService.getAllBreeds();
             setBreeds(breeds.data);
             setSelectedBreed(0);
+            setIsLoading(false);
         }
         fetchBreeds();
     }, [])
@@ -30,10 +33,15 @@ function BreedStory() {
         setSelectedBreed( prevState => prevState !== null ? (prevState - 1 + breeds.length) % breeds.length : null);
     }
 
-    return <div className="container">
-        <IconButton icon={CaretLeftIcon} borderRadius={80} width={80} height={80} onClick={onClickPrev}/>
+    return <div className="story-container">
+        {isLoading ? <Pane>
+            <Spinner margin="auto"/>
+            <p>Loading story...</p>
+        </Pane>: <>
+        <IconButton icon={CaretLeftIcon} className='pagination-button' onClick={onClickPrev}/>
         <BreedInfo breed={selectedBreed !== null ? breeds[selectedBreed] : null}/>
-        <IconButton icon={CaretRightIcon} borderRadius={80} width={80} height={80} onClick={onClickNext}/>
+        <IconButton icon={CaretRightIcon} className='pagination-button' onClick={onClickNext}/>
+        </> }
     </div>
 }
 

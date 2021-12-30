@@ -1,0 +1,8 @@
+.nav {
+    float: right;
+    padding: 24px;
+}
+
+.nav > a {
+    text-decoration: none;
+}

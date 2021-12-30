@@ -5,3 +5,8 @@
     transform: translate(-50%, -50%);
     display: flex;
 }
+
+.spinner-loading > p {
+    color: #fff;
+    font-weight: 600;
+}
