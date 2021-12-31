@@ -3,6 +3,7 @@
     max-width: 400px;
     min-width: 350px;
     min-height: 350px;
+    background: #fff;
 }
 
 .info-box > span {
@@ -25,12 +26,12 @@
 }
 
 .origin {
-    font-size: 14px;
+    font-size: 12px;
     text-align: right;
     margin-bottom: 0;
 }
 
-.ub-ml_-4px {
+.info-box .ub-ml_-4px {
     margin: auto;
 }
 

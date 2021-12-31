@@ -38,6 +38,7 @@ class DogService {
         return axios.get<UploadedImageType[]>('/images', {
             params: {
                 sub_id: userId,
+                limit: 100
             }
         })
     }
@@ -62,6 +63,16 @@ class DogService {
     }
     deleteVoteById(voteId: number) {
         return axios.delete<ResultType>('/votes/' + voteId)
+    }
+    uploadNewImage(userId: string, file: File) {
+        const bodyFormData = new FormData();
+        bodyFormData.append('sub_id', userId);
+        bodyFormData.append('file', file);
+        return axios.post<File>('/images/upload', bodyFormData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
     }
 }
 

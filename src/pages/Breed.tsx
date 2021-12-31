@@ -4,7 +4,7 @@ import BreedMenu from "../components/BreedMenu";
 import { BreedType } from "../types/Breed";
 import DogService from "../services/DogService";
 import BreedInfo from "../components/BreedInfo";
-import {Pane, Spinner} from "evergreen-ui";
+import { Pane, Spinner } from "evergreen-ui";
 
 
 function Breed() {
@@ -21,9 +21,8 @@ function Breed() {
             setSelectedBreed(breeds.data[0]);
             setIsLoading(false);
         }
+
         fetchBreeds();
-      // setBreeds(BREEDS);
-      // setSelectedBreed(BREEDS[0]);
     }, [])
 
     const onBreedSelected = (id: number) => {
@@ -39,13 +38,18 @@ function Breed() {
     const filteredBreeds = breeds.filter(breed => breed.name.toLowerCase().includes(searchBreed.toLowerCase()));
 
     return <section className="container">
-        {isLoading ? <Pane>
-            <Spinner margin="auto"/>
-            <p>Loading breeds...</p>
-        </Pane> : <><BreedMenu breeds={filteredBreeds}
-           handleBreedChange={onBreedSelected}
-           handleBreedSearch={onBreedSearched}/>
-        <BreedInfo breed={selectedBreed}/> </>
+        {
+            isLoading ?
+            <Pane>
+                <Spinner margin="auto"/>
+                <p>Loading breeds...</p>
+            </Pane> :
+                <>
+                    <BreedMenu breeds={filteredBreeds}
+                       handleBreedChange={onBreedSelected}
+                       handleBreedSearch={onBreedSearched}/>
+                    <BreedInfo breed={selectedBreed}/>
+                </>
         }
     </section>
 }

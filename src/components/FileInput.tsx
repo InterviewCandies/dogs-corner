@@ -1,14 +1,17 @@
 import React from "react";
 import './FileInput.css';
-import {UploadIcon} from "evergreen-ui";
+import { FilePicker } from "evergreen-ui";
 
-function FileInput() {
-    return <div className="file-container">
-        <input type='file' className="file-input"/>
-        <div className="placeholder-center">
-            <UploadIcon size={36}></UploadIcon>
-            <h3>Upload new dog image</h3>
-        </div>
+interface Props {
+    handleFileChanged: (file: File) => void
+}
+
+function FileInput({ handleFileChanged }: Props) {
+    return <div>
+        <FilePicker
+            onChange={files => files.length ? handleFileChanged(files[0]) : null}
+            placeholder="Select the file here!"
+        />
 
     </div>
 }

@@ -2,11 +2,11 @@
     padding: 16px 24px 16px 24px;
     margin-bottom: 24px;
     min-height: 230px;
+    background: #fff;
 }
 
 .title {
     margin: 8px 0 24px 0;
-    color: #8f95b2;
 }
 
 .thumb {
@@ -46,9 +46,18 @@
     text-align: center;
     line-height: 120px;
     height: 120px;
+    position: relative;
 }
 
 .no-item > h3 {
     color: #c1c4d6;
     font-size: 16px;
+    margin: 0;
+}
+
+.no-item > * {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }

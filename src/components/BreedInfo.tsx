@@ -5,6 +5,7 @@ import './BreedInfo.css';
 import DogService from "../services/DogService";
 import { NewVoteType, VoteType } from "../types/Vote";
 import { Favourite, NewFavoriteType } from "../types/Favourite";
+import ProgressiveImage from "react-progressive-graceful-image";
 
 interface Props {
     breed: BreedType | null
@@ -119,36 +120,41 @@ function BreedInfo({ breed }: Props) {
     }
 
     return  <Card className="info-box" elevation={1} padding={16}>
-        {breed ? <>
-            <span>
-                <IconButton icon={isVoting ? undefined : ThumbsUpIcon}
-                    marginRight={8}
-                    isLoading={isVoting}
-                    appearance={currentVote?.value === 1 ? 'primary' : undefined}
-                    onClick={() => onVote(1)}
-                    intent={currentVote?.value === 1 ? 'success' : undefined}
-                />
-                <IconButton icon={isVoting ? undefined : ThumbsDownIcon}
-                    appearance={currentVote?.value === 0 ? 'primary' : undefined}
-                    marginRight={8}
-                    isLoading={isVoting}
-                    onClick={() => onVote(0)}
-                    intent={currentVote?.value === 0 ? 'danger' : undefined}
-                />
-                 <IconButton
-                    icon={isProcessingFav ? undefined : HeartIcon}
-                    isLoading={isProcessingFav}
-                    appearance={currentFav? 'primary' : undefined}
-                    onClick={() => onFavouriteClicked()}
-                    intent={currentFav? 'none' : undefined}
-                 />
-            </span>
-            <h3>{ breed.name }</h3>
-            <small>{ breed.bred_for }</small>
-            <img src={ breed.image.url } />
-            { breed.temperament ? getTags(breed.temperament) : null }
-            { breed.life_span ? <p className="origin">Life span: { breed.life_span }</p> : null }
-        </> : <p className="no-result">No result</p>}
+        {
+            breed ?
+                <>
+                    <span>
+                        <IconButton icon={isVoting ? undefined : ThumbsUpIcon}
+                            marginRight={8}
+                            isLoading={isVoting}
+                            appearance={currentVote?.value === 1 ? 'primary' : undefined}
+                            onClick={() => onVote(1)}
+                            intent={currentVote?.value === 1 ? 'success' : undefined}
+                        />
+                        <IconButton icon={isVoting ? undefined : ThumbsDownIcon}
+                            appearance={currentVote?.value === 0 ? 'primary' : undefined}
+                            marginRight={8}
+                            isLoading={isVoting}
+                            onClick={() => onVote(0)}
+                            intent={currentVote?.value === 0 ? 'danger' : undefined}
+                        />
+                         <IconButton
+                            icon={isProcessingFav ? undefined : HeartIcon}
+                            isLoading={isProcessingFav}
+                            appearance={currentFav? 'primary' : undefined}
+                            onClick={() => onFavouriteClicked()}
+                            intent={currentFav? 'none' : undefined}
+                         />
+                    </span>
+                    <h3>{ breed.name }</h3>
+                    <small>{ breed.bred_for }</small>
+                    <ProgressiveImage placeholder='http://placehold.jp/24/e6e8f0/696f8c/500x500.png?text=Loading%20image' src={breed.image.url}>
+                        { (src: string) => <img src={src} /> }
+                    </ProgressiveImage>
+                    { breed.temperament ? getTags(breed.temperament) : null }
+                    { breed.life_span ? <p className="origin">Life span: { breed.life_span }</p> : null }
+                </> : <p className="no-result">No result</p>
+        }
     </Card>;
 }
 
