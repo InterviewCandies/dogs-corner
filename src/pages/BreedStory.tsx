@@ -3,11 +3,7 @@ import { BreedType } from "../types/Breed";
 import BreedInfo from "../components/BreedInfo";
 import DogService from "../services/DogService";
 import './BreedStory.css';
-import {CaretLeftIcon, CaretRightIcon, IconButton, Pane, Spinner} from "evergreen-ui";
-
-interface Props {
-    breeds: BreedType[]
-}
+import { CaretLeftIcon, CaretRightIcon, IconButton, Pane, Spinner } from "evergreen-ui";
 
 function BreedStory() {
     const [breeds, setBreeds] = useState<BreedType[]>([]);

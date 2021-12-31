@@ -6,7 +6,6 @@ import DogService from "../services/DogService";
 import BreedInfo from "../components/BreedInfo";
 import { Pane, Spinner } from "evergreen-ui";
 
-
 function Breed() {
     const [breeds, setBreeds] = useState<BreedType[]>([]);
     const [selectedBreed, setSelectedBreed] = useState<BreedType | null>(null);
