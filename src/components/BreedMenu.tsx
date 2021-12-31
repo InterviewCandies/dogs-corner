@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
-import {Card, Menu, Pane, SearchInput, Spinner} from "evergreen-ui";
+import { Card, Menu, Pane, SearchInput } from "evergreen-ui";
 import './BreedMenu.css';
 import { BreedType } from "../types/Breed";
 
@@ -18,10 +18,11 @@ interface Props {
 
 function BreedMenu({ breeds, handleBreedChange, handleBreedSearch}: Props) {
     const [selectedBreed, setSelectBreed] = useState<number | null>(null);
+    const temp = JSON.stringify(breeds);
 
     useEffect(() => {
         setSelectBreed(breeds.length ? breeds[0].id : 0);
-    }, [JSON.stringify(breeds)])
+    }, [temp])
 
     return <div className="breeds">
         <SearchInput placeholder="Type the name of breed"

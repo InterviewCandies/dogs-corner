@@ -20,7 +20,7 @@ function CollectionList({ items, heading, onDelete, isLoading }: Props) {
     const ImageThumb = ({ src, id }: { src: string, id: number }) => {
         return <div className="thumb">
             <ProgressiveImage placeholder='http://placehold.jp/24/e6e8f0/696f8c/500x500.png?text=Loading%20image' src={src}>
-                { (src: string) =>  <img src={src} className="image"/> }
+                { (src: string) =>  <img src={src} className="image" alt={src}/> }
             </ProgressiveImage>
             <Tooltip content={'Delete'}>
                 <IconButton

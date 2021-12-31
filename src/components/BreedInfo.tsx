@@ -29,6 +29,7 @@ function BreedInfo({ breed }: Props) {
     const [favourites, setFavourites] = useState<Favourite[]>([]);
     const [isVoting, setIsVoting] = useState<boolean>(false);
     const [isProcessingFav, setIsProcessingFav] = useState<boolean>(false);
+    const temp = JSON.stringify(breed);
 
     useEffect(() => {
         const userId = DogService.getUserInfo();
@@ -49,7 +50,7 @@ function BreedInfo({ breed }: Props) {
 
         fetchFavourites();
 
-    }, [JSON.stringify(breed)]);
+    }, [temp]);
 
     const currentVote = votes.find(vote => vote.image_id === breed?.image.id);
     const currentFav = favourites.find(fav => fav.image_id === breed?.image.id);
@@ -149,7 +150,7 @@ function BreedInfo({ breed }: Props) {
                     <h3>{ breed.name }</h3>
                     <small>{ breed.bred_for }</small>
                     <ProgressiveImage placeholder='http://placehold.jp/24/e6e8f0/696f8c/500x500.png?text=Loading%20image' src={breed.image.url}>
-                        { (src: string) => <img src={src} /> }
+                        { (src: string) => <img src={src} alt={breed?.image.id}/> }
                     </ProgressiveImage>
                     { breed.temperament ? getTags(breed.temperament) : null }
                     { breed.life_span ? <p className="origin">Life span: { breed.life_span }</p> : null }
